@@ -1,8 +1,6 @@
 from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
 from config import db
-
-# ----------------- HERO MODEL -----------------
 class Hero(db.Model, SerializerMixin):
     __tablename__ = 'heroes'
 
@@ -16,11 +14,11 @@ class Hero(db.Model, SerializerMixin):
         cascade='all, delete-orphan'
     )
 
-    # Prevent infinite recursion when converting to JSON
+    
     serialize_rules = ('-hero_powers.hero',)
 
 
-# ----------------- POWER MODEL -----------------
+
 class Power(db.Model, SerializerMixin):
     __tablename__ = 'powers'
 
@@ -44,7 +42,7 @@ class Power(db.Model, SerializerMixin):
         return description
 
 
-# ----------------- HEROPOWER MODEL -----------------
+
 class HeroPower(db.Model, SerializerMixin):
     __tablename__ = 'hero_powers'
 
